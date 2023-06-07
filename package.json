@@ -1,0 +1,25 @@
+{
+  "name": "@microsoft/eslint-config-msgraph",
+  "version": "1.0.0",
+  "description": "A sharable eslint config for Microsoft Graph web teams to use as a base set of linting rules",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "prettier.config.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Microsoft",
+  "license": "MIT",
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.8"
+  }
+}

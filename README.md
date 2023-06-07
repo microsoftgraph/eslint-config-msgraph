@@ -1,14 +1,33 @@
-# Project
+# eslint-config-msgraph
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains a shareable ESLint and Prettier configuration used by the Microsoft Graph Developer Experience team.
 
-As the maintainer of this project, please make a few updates:
+## Installation
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+To install the configuration, run the following command:
+
+```bash
+npm install --save-dev @microsoft/eslint-config-msgraph
+```
+
+In your project's eslint config file, add the following entry in your `extends` array:
+
+```js
+  extends: ['@microsoft/eslint-config-msgraph'],
+```
+
+To use the shared Prettier config, add a `prettier.config.cjs` file with the following contents:
+
+```js
+module.exports = {
+  ...require('@microsoft/eslint-config-msgraph/prettier.config'),
+  // add any overrides here
+};
+```
+
+## Feedback and Requests
+
+Please use [GitHub Issues](https://github.com/microsoftgraph/eslint-config-msgraph/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) for bug reports and feature requests. We highly recommend you browse existing issues before opening new issues.
 
 ## Contributing
 
@@ -26,8 +45,16 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+## License
+
+All files in this GitHub repository are subject to the [MIT license](https://github.com/microsoftgraph/eslint-config-msgraph/blob/main/LICENSE). This project also references fonts and icons from a CDN, which are subject to a separate [asset license](https://static2.sharepointonline.com/files/fabric/assets/license.txt).
+
+## Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
