@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-name: branch_protection_sdks
+name: branch_protection_eslint_config
 description: Organization branch protection policy for Microsoft Graph Toolkit repository
 resource: repository
 configuration:
