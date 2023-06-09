@@ -62,7 +62,6 @@ module.exports = {
     'linebreak-style': 'off',
     'max-classes-per-file': ['error', 1],
     'new-parens': ['error', 'always'],
-    'newline-per-chained-call': ['error', { ignoreChainWithDepth: 2 }],
     'no-bitwise': 'error',
     'no-caller': 'error',
     'no-console': ['error', { allow: ['warn', 'error'] }],

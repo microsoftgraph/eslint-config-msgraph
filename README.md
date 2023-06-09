@@ -1,6 +1,7 @@
 # eslint-config-msgraph
 
 This repository contains a shareable ESLint and Prettier configuration used by the Microsoft Graph Developer Experience team.
+Suggestions for changes are greatly welcomed, please raise an [issue](https://github.com/microsoftgraph/eslint-config-msgraph/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)  to discuss your suggestion.
 
 ## Installation
 
