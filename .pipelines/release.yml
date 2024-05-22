@@ -50,14 +50,15 @@ stages:
               versionSpec: '20.x'
             displayName: Install nodejs 20.x
           # building the package
-          - task: Npm@1
-            inputs:
-              command: 'pack'
+          - script: |
+              npm pack
+            displayName: npm pack
           # move the package to a dist folder
           - script: |
               mkdir dist
               mv *.tgz dist/
               cp package.json dist/
+            displayName: Move package to dist folder
           # use OneES to publish the package to NPM
           - task: EsrpRelease@5
             inputs:
