@@ -66,8 +66,8 @@ stages:
               ContentSource: 'Folder'
               FolderLocation: ./dist/
               WaitForReleaseCompletion: true
-              Owners: 'gavinbarron@microsoft.com'
-              Approvers: 'mmainer@microsoft.com'
+              Owners: 'gavinbarron@microsoft.com,martinmusale@microsoft.com'
+              Approvers: 'mmainer@microsoft.com,martinmusale@microsoft.com'
               ServiceEndpointUrl: 'https://api.esrp.microsoft.com'
               MainPublisher: 'ESRPRELPACMAN'
               DomainTenantId: 'cdc5aeea-15c5-4db6-b079-fcadd2505dc2'
