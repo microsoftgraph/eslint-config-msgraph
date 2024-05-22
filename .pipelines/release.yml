@@ -1,8 +1,9 @@
+name: eslint-config-msgraph release pipeline
 
 trigger:
-  push:
-    tags:
-      - 'v*.*.*'
+  tags:
+    include:
+    - 'v*.*.*'
 
 stages:
 - stage: version_info
