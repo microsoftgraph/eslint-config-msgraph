@@ -1,0 +1,75 @@
+
+trigger:
+  push:
+    tags:
+      - 'v*.*.*'
+
+stages:
+- stage: version_info
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: version
+    steps:
+      - checkout: self
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '20.x'
+        displayName: Install nodejs v20.x
+      # Read latest version from npm
+      - script: |
+          npm_version=$(npm show @microsoft/eslint-config-msgraph version)
+          echo "##vso[task.setVariable variable=npm_version;isOutput=true]$npm_version"
+        displayName: Read latest version from npmjs
+        name: npm
+      # Read version from package.json
+      - script: |
+          pkg_version=$(jq -r .version ./package.json)
+          echo "##vso[task.setVariable variable=pkg_version;isOutput=true]$pkg_version"
+        name: pkg
+
+- stage: publish
+  dependsOn: version_info
+  condition: ne(dependencies.version_info.outputs['version.npm.npm_version'], dependencies.version_info.outputs['version.pkg.pkg_version'])
+  # check that pkg and npm versions are not equal
+  jobs:
+  - deployment: PublishToNPM
+    displayName: Publish to npm
+    pool:
+      vmImage: 'ubuntu-latest'
+    # creates an environment if it doesn't exist
+    environment: 'eslint-config-msgraph'
+    strategy: 
+      runOnce:
+        deploy:
+         steps:
+          - checkout: self
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: Install nodejs 20.x
+          # building the package
+          - task: Npm@1
+            inputs:
+              command: 'pack'
+          # move the package to a dist folder
+          - script: |
+              mkdir dist
+              mv *.tgz dist/
+              cp package.json dist/
+          # use OneES to publish the package to NPM
+          - task: EsrpRelease@5
+            inputs:
+              ConnectedServiceName: 'MsGraph-ESRP-Publisher-Service-Connection'
+              Intent: 'PackageDistribution'
+              ContentType: 'npm'
+              ContentSource: 'Folder'
+              FolderLocation: ./dist/
+              WaitForReleaseCompletion: true
+              Owners: 'gavinbarron@microsoft.com,martinmusale@microsoft.com'
+              Approvers: 'mmainer@microsoft.com,martinmusale@microsoft.com'
+              ServiceEndpointUrl: 'https://api.esrp.microsoft.com'
+              MainPublisher: 'ESRPRELPACMAN'
+              DomainTenantId: 'cdc5aeea-15c5-4db6-b079-fcadd2505dc2'
+
+
