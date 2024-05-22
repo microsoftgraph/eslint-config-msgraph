@@ -54,9 +54,28 @@ stages:
             inputs:
               versionSpec: '20.x'
             displayName: Install nodejs 20.x
+          # building the package
           - task: Npm@1
             inputs:
-              command: 'publish'
-              publishEndpoint: 'microsoftgraph NPM publishing connection'
+              command: 'pack'
+          # move the package to a dist folder
+          - script: |
+              mkdir dist
+              mv *.tgz dist/
+              cp package.json dist/
+          # use OneES to publish the package to NPM
+          - task: EsrpRelease@5
+            inputs:
+              ConnectedServiceName: 'MsGraph-ESRP-Publisher-Service-Connection'
+              Intent: 'PackageDistribution'
+              ContentType: 'npm'
+              ContentSource: 'Folder'
+              FolderLocation: ./dist/
+              WaitForReleaseCompletion: true
+              Owners: 'gavinbarron@microsoft.com'
+              Approvers: 'mmainer@microsoft.com'
+              ServiceEndpointUrl: 'https://api.esrp.microsoft.com'
+              MainPublisher: 'ESRPRELPACMAN'
+              DomainTenantId: 'cdc5aeea-15c5-4db6-b079-fcadd2505dc2'
 
 
