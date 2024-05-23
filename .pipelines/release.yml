@@ -37,7 +37,7 @@ stages:
   - deployment: PublishToNPM
     displayName: Publish to npm
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-latest'
     # creates an environment if it doesn't exist
     environment: 'eslint-config-msgraph'
     strategy: 
@@ -51,15 +51,11 @@ stages:
             displayName: Install nodejs 20.x
           # building the package
           - script: |
-              npm pack
-            displayName: npm pack
-          # move the package to a dist folder
-          - script: |
               mkdir dist
-              mv *.tgz dist/
-              cp package.json dist/
-            displayName: Move package to dist folder
-          # use OneES to publish the package to NPM
+              npm pack --pack-destination dist
+              cp package.json dist
+            displayName: build npm package
+          # use ESRP to publish the package to NPM
           - task: EsrpRelease@5
             inputs:
               ConnectedServiceName: 'MsGraph-ESRP-Publisher-Service-Connection'
