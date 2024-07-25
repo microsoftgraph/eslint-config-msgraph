@@ -11,11 +11,29 @@ To install the configuration, run the following command:
 npm install --save-dev @microsoft/eslint-config-msgraph
 ```
 
+### eslint configuration
+
+#### non-React projects
+
+If your project does not contain react components, use this configuration.
+
+In your project's eslint config file, add the following entry in your `extends` array:
+
+```js
+  extends: ['@microsoft/eslint-config-msgraph/core'],
+```
+
+#### React projects
+
+If your project contains react components, use this configuration instead.
+
 In your project's eslint config file, add the following entry in your `extends` array:
 
 ```js
   extends: ['@microsoft/eslint-config-msgraph'],
 ```
+
+### Prettier configuration
 
 To use the shared Prettier config, add a `prettier.config.cjs` file with the following contents:
 
