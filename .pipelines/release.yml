@@ -56,9 +56,13 @@ stages:
               cp package.json dist
             displayName: build npm package
           # use ESRP to publish the package to NPM
-          - task: EsrpRelease@5
+          - task: EsrpRelease@7
             inputs:
-              ConnectedServiceName: 'MsGraph-ESRP-Publisher-Service-Connection'
+              connectedservicename: 'Federated DevX ESRP Managed Identity Connection'
+              keyvaultname: 'akv-prod-eastus'
+              authcertname: 'ReferenceLibraryPrivateCert'
+              signcertname: 'ReferencePackagePublisherCertificate'
+              clientid: '65035b7f-7357-4f29-bf25-c5ee5c3949f8'
               Intent: 'PackageDistribution'
               ContentType: 'npm'
               ContentSource: 'Folder'
