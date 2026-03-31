@@ -14,12 +14,14 @@
   "author": "Microsoft",
   "license": "MIT",
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.0.0-alpha.54",
-    "@typescript-eslint/parser": "^8.0.0-alpha.54",
-    "eslint": "^9.7.0",
-    "eslint-config-prettier": "^10.0.1",
+    "@eslint/js": "^9.0.0 || ^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0 || ^10.0.0",
+    "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.34.1",
+    "globals": ">=14.0.0",
     "prettier": "^3.2.5"
   },
   "publishConfig": {
