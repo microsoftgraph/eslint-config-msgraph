@@ -11,26 +11,48 @@ To install the configuration, run the following command:
 npm install --save-dev @microsoft/eslint-config-msgraph
 ```
 
+You will also need to install the peer dependencies:
+
+```bash
+npm install --save-dev eslint @eslint/js @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prefer-arrow globals prettier
+```
+
 ### eslint configuration
+
+This package uses [ESLint flat config](https://eslint.org/docs/latest/use/configure/configuration-files) format.
 
 #### non-React projects
 
 If your project does not contain react components, use this configuration.
 
-In your project's eslint config file, add the following entry in your `extends` array:
+In your project's `eslint.config.js` file:
 
 ```js
-  extends: ['@microsoft/eslint-config-msgraph/core'],
+const msgraphConfig = require('@microsoft/eslint-config-msgraph/core');
+
+module.exports = [
+  ...msgraphConfig,
+  // add any overrides here
+];
 ```
 
 #### React projects
 
-If your project contains react components, use this configuration instead.
+If your project contains react components, also install `eslint-plugin-react`:
 
-In your project's eslint config file, add the following entry in your `extends` array:
+```bash
+npm install --save-dev eslint-plugin-react
+```
+
+In your project's `eslint.config.js` file:
 
 ```js
-  extends: ['@microsoft/eslint-config-msgraph'],
+const msgraphConfig = require('@microsoft/eslint-config-msgraph');
+
+module.exports = [
+  ...msgraphConfig,
+  // add any overrides here
+];
 ```
 
 ### Prettier configuration
